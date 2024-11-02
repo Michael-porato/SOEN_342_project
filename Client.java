@@ -1,39 +1,39 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client extends User{
     
-    private String username;
-    private String password;
+    private List<Booking> bookings;
 
 
 
-public Client(String username, String password){
-
-    this.username = username;
-    this.password = password;
-}
-
-
-public String getUsername(){
-
-    return username;
-}
-
-public String getPassword(){
-
-    return "*".repeat(password.length());
-}
+public Client(int userId, String name, String email, String username, String password) {
+        super(userId, name, email, username, password);
+        this.bookings = new ArrayList<>();
+    }
 
 
+   
+    public List<Booking> getBookings() {
+        return bookings; 
+    }
 
-public void setUsername(String username){
+   
+    public void addBooking(Booking booking) {
+        bookings.add(booking); 
+    }
 
-    this.username = username;
-}
+    
+    public void removeBooking(Booking booking) {
+        bookings.remove(booking);
+    }
 
-public void setPassword(String password){
-
-    this.password = password;
-}
-
-
+    // Optional: Method to view all bookings
+    public void viewBookings() {
+        System.out.println("Bookings for " + getName() + ":");
+        for (Booking booking : bookings) {
+            System.out.println(booking); 
+        }
+    }
 
 }

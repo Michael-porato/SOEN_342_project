@@ -1,26 +1,26 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class Instructor extends User{
     
 
-    private String name;
+    
     private String phone_number;
     private String specialization;
-    private boolean isAvailable;
+    private List<Availability> availability;
     
 
 
-    public Instructor(String name, String phone_number, String specialization, boolean isAvailable){
+    public Instructor(int userID, String name, String phone_number, String email, String username, String password, String phoneNumber, String specialization){
 
-        this.name = name;
-        this.phone_number = phone_number;
+        super(userID, name, email, username, password);
+        this.phone_number = phone_number; 
         this.specialization = specialization;
-        this.isAvailable = isAvailable;
+        this.availability = new ArrayList<>(); 
 
     }
 
 
-    public String getName(){
-        return name;
-    }
 
     public String getPhone_number(){
         return phone_number;
@@ -30,15 +30,11 @@ public class Instructor extends User{
         return specialization;
     }
 
-    public boolean getIsAvailable(){
-        return isAvailable;
+    public List<Availability> getAvailability(){
+        return availability;
     }
 
 
-
-    public void setName(String name){
-        this.name = name;
-    }
 
     public void setPhone_number(String phone_number){
         if (phone_number.matches("\\d{10}")) {
@@ -52,9 +48,18 @@ public class Instructor extends User{
         this.specialization = specialization;
     }
 
-    public void setIsAvailable(boolean isAvailable){
-        this.isAvailable = isAvailable;
+
+      
+    public void addAvailability(Availability avail) {
+        availability.add(avail);                   
     }
+
+    
+    public void removeAvailability(Availability avail) {
+        availability.remove(avail);             
+    }
+
+    
 
 
 }
