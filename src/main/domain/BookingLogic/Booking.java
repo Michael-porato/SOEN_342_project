@@ -1,3 +1,4 @@
+package src.main.domain;
 public class Booking {
     private String bookingId;       
     private Client client;            

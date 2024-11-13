@@ -1,8 +1,9 @@
+package src.main.domain;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Administrator extends User {
-    private List<Offerings> offerings; 
+    public List<Offerings> offerings; 
 
    
     public Administrator(int userId, String name, String email, String username, String password) {

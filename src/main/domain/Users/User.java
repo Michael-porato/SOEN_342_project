@@ -1,9 +1,10 @@
+package src.main.domain;
 public abstract class User {
     
     private int userID;
-    private String name;
-    private String email;
-    private String username;
+    public String name;
+    public String email;
+    public String username;
     private String password;
 
 

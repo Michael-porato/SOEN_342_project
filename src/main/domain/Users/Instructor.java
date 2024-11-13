@@ -1,3 +1,4 @@
+package src.main.domain;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -5,9 +6,9 @@ public class Instructor extends User{
     
 
     
-    private String phone_number;
+    public String phone_number;
     private String specialization;
-    private List<Availability> availability;
+    public List<Availability> availability;
     
 
 

@@ -1,3 +1,4 @@
+package src.main.domain;
 import java.util.ArrayList;
 import java.util.List;
 

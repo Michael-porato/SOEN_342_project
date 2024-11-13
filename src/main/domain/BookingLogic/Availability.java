@@ -1,9 +1,10 @@
+package src.main.domain;
 import java.time.LocalTime;
 
 public class Availability {
-    private String day;        
-    private LocalTime startTime;
-    private LocalTime endTime;   
+    public String day;        
+    public LocalTime startTime;
+    public LocalTime endTime;   
 
     // Constructor
     public Availability(String day, LocalTime startTime, LocalTime endTime) {
