@@ -1,111 +1,104 @@
-package src.main.domain;
+package main.Interface;
 
 import java.util.Scanner;
 
 
+
 public class Main {
     public static void main(String[] args) {
-        // Predefined correct credentials for different roles
-        String storedClientUsername = "client123";
-        String storedClientPassword = "clientpass";
-        
-        String storedAdminUsername = "admin123";
-        String storedAdminPassword = "adminpass";
-        
-        String storedInstructorUsername = "instructor123";
-        String storedInstructorPassword = "instructorpass";
+        Scanner var7 = new Scanner(System.in);
+        boolean var8 = false;
 
-        // Create a scanner to get user input
-        Scanner scanner = new Scanner(System.in);
+        String var1 = "clientUser";      // Placeholder client username
+        String var2 = "clientPass";      // Placeholder client password
+        String var3 = "adminUser";       // Placeholder administrator username
+        String var4 = "adminPass";       // Placeholder administrator password
+        String var5 = "instructorUser";  // Placeholder instructor username
+        String var6 = "instructorPass";  // Placeholder instructor password
 
-        boolean exit = false;
-
-        // Start guest menu
-        while (!exit) {
+        while (!var8) {
             System.out.println("Guest Menu:");
             System.out.println("1. Login");
             System.out.println("2. Create Account as Client");
             System.out.println("3. View Offerings");
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();  
-
-            // Main menu logic with if-else
-            if (choice == 1) {
-                // Login option
+            
+            int var9 = var7.nextInt();
+            var7.nextLine(); // Consume newline
+            
+            if (var9 == 1) {
                 System.out.println("Login Menu:");
                 System.out.println("1. Login as Client");
                 System.out.println("2. Login as Administrator");
                 System.out.println("3. Login as Instructor");
                 System.out.print("Choose your role to log in: ");
-                int loginChoice = scanner.nextInt();
-                scanner.nextLine();  
+                
+                int var13 = var7.nextInt();
+                var7.nextLine(); // Consume newline
+                String var11, var12;
 
-               
-                if (loginChoice == 1) {
-                    // Client login
+                if (var13 == 1) {
                     System.out.print("Enter Client username: ");
-                    String clientUsername = scanner.nextLine();
+                    var11 = var7.nextLine();
                     System.out.print("Enter Client password: ");
-                    String clientPassword = scanner.nextLine();
-                    
-                    if (clientUsername.equals(storedClientUsername) && clientPassword.equals(storedClientPassword)) {
+                    var12 = var7.nextLine();
+
+                    if (var11.equals(var1) && var12.equals(var2)) {
                         System.out.println("Client login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Client.");
                     }
-                } else if (loginChoice == 2) {
-                    // Administrator login
+
+                } else if (var13 == 2) {
                     System.out.print("Enter Administrator username: ");
-                    String adminUsername = scanner.nextLine();
+                    var11 = var7.nextLine();
                     System.out.print("Enter Administrator password: ");
-                    String adminPassword = scanner.nextLine();
-                    
-                    if (adminUsername.equals(storedAdminUsername) && adminPassword.equals(storedAdminPassword)) {
+                    var12 = var7.nextLine();
+
+                    if (var11.equals(var3) && var12.equals(var4)) {
                         System.out.println("Administrator login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Administrator.");
                     }
-                } else if (loginChoice == 3) {
-                    // Instructor login
+
+                } else if (var13 == 3) {
                     System.out.print("Enter Instructor username: ");
-                    String instructorUsername = scanner.nextLine();
+                    var11 = var7.nextLine();
                     System.out.print("Enter Instructor password: ");
-                    String instructorPassword = scanner.nextLine();
-                    
-                    if (instructorUsername.equals(storedInstructorUsername) && instructorPassword.equals(storedInstructorPassword)) {
+                    var12 = var7.nextLine();
+
+                    if (var11.equals(var5) && var12.equals(var6)) {
                         System.out.println("Instructor login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Instructor.");
                     }
+
                 } else {
                     System.out.println("Invalid choice. Returning to the main menu.");
                 }
-            } else if (choice == 2) {
-                // Create account as Client
+
+            } else if (var9 == 2) {
                 System.out.print("Enter a username for the new Client: ");
-                String newClientUsername = scanner.nextLine();
+                String var10 = var7.nextLine();
                 System.out.print("Enter a password for the new Client: ");
-                String newClientPassword = scanner.nextLine();
-                
-                // In a real application, here you would store the new client credentials
+                var10 = var7.nextLine();
                 System.out.println("Account created successfully as Client!");
-            } else if (choice == 3) {
-                // View offerings
+
+            } else if (var9 == 3) {
                 System.out.println("Viewing available offerings...");
-                // You can display some offerings here
-            } else if (choice == 4) {
-                // Exit the program
-                exit = true;
+                // Logic to view offerings goes here
+
+            } else if (var9 == 4) {
+                var8 = true;
                 System.out.println("Exiting the system.");
+
             } else {
                 System.out.println("Invalid option. Please try again.");
             }
         }
 
-        // Close the scanner to avoid resource leak
-        scanner.close();
+        var7.close();
     }
 }
 

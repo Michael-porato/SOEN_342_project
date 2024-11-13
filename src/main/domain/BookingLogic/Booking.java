@@ -1,4 +1,7 @@
-package src.main.domain;
+package main.domain.BookingLogic;
+
+import main.domain.Users.Client;
+
 public class Booking {
     private String bookingId;       
     private Client client;            

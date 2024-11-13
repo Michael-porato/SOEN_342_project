@@ -1,5 +1,7 @@
-package src.main.domain;
+package main.domain.BookingLogic;
 import java.time.LocalDateTime;
+
+import main.domain.Users.Instructor;
 
 public class Lesson {
     private String lessonId;             

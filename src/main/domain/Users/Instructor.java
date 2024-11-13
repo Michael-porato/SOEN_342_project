@@ -1,5 +1,8 @@
-package src.main.domain;
+package main.domain.Users;
 import java.util.List;
+
+import main.domain.BookingLogic.Availability;
+
 import java.util.ArrayList;
 
 public class Instructor extends User{

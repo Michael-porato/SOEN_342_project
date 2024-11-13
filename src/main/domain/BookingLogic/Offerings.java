@@ -1,4 +1,4 @@
-package src.main.domain;
+package main.domain.BookingLogic;
 import java.time.LocalDateTime;
 
 
