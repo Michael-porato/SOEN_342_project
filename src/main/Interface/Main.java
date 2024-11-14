@@ -1,10 +1,14 @@
 package main.Interface;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 
 
 public class Main {
+
+    static HashMap<String, String> users = new HashMap<>();
+
     public static void main(String[] args) {
         Scanner keyIn = new Scanner(System.in);
         boolean var8 = false;
@@ -24,52 +28,52 @@ public class Main {
             System.out.println("4. Exit");
             System.out.print("Choose an option: ");
             
-            int choice1 = keyIn.nextInt();
+            int choice = keyIn.nextInt();
             keyIn.nextLine(); // Consume newline
             
-            if (choice1 == 1) {
+            if (choice == 1) {
                 System.out.println("Login Menu:");
                 System.out.println("1. Login as Client");
                 System.out.println("2. Login as Administrator");
                 System.out.println("3. Login as Instructor");
                 System.out.print("Choose your role to log in: ");
                 
-                int choice2 = keyIn.nextInt();
+                int login_choice = keyIn.nextInt();
                 keyIn.nextLine(); // Consume newline
-                
-                String var11, var12;
 
-                if (choice2 == 1) {
+                String login_username, var12;
+
+                if (login_choice == 1) {
                     System.out.print("Enter Client username: ");
-                    var11 = keyIn.nextLine();
+                    login_username = keyIn.nextLine();
                     System.out.print("Enter Client password: ");
                     var12 = keyIn.nextLine();
 
-                    if (var11.equals(var1) && var12.equals(var2)) {
+                    if (login_username.equals(var1) && var12.equals(var2)) {
                         System.out.println("Client login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Client.");
                     }
 
-                } else if (choice2 == 2) {
+                } else if (login_choice == 2) {
                     System.out.print("Enter Administrator username: ");
-                    var11 = keyIn.nextLine();
+                    login_username = keyIn.nextLine();
                     System.out.print("Enter Administrator password: ");
                     var12 = keyIn.nextLine();
 
-                    if (var11.equals(var3) && var12.equals(var4)) {
+                    if (login_username.equals(var3) && var12.equals(var4)) {
                         System.out.println("Administrator login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Administrator.");
                     }
 
-                } else if (choice2 == 3) {
+                } else if (login_choice == 3) {
                     System.out.print("Enter Instructor username: ");
-                    var11 = keyIn.nextLine();
+                    login_username = keyIn.nextLine();
                     System.out.print("Enter Instructor password: ");
                     var12 = keyIn.nextLine();
 
-                    if (var11.equals(var5) && var12.equals(var6)) {
+                    if (login_username.equals(var5) && var12.equals(var6)) {
                         System.out.println("Instructor login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Instructor.");
@@ -79,18 +83,22 @@ public class Main {
                     System.out.println("Invalid choice. Returning to the main menu.");
                 }
 
-            } else if (choice1 == 2) {
+            } else if (choice == 2) {
+                String new_user, new_pass;
                 System.out.print("Enter a username for the new Client: ");
-                String var10 = keyIn.nextLine();
+                new_user = keyIn.nextLine();
                 System.out.print("Enter a password for the new Client: ");
-                var10 = keyIn.nextLine();
+                new_pass = keyIn.nextLine();
+
+                users.put(new_user, new_pass);
+
                 System.out.println("Account created successfully as Client!");
 
-            } else if (choice1 == 3) {
+            } else if (choice == 3) {
                 System.out.println("Viewing available offerings...");
                 // Logic to view offerings goes here
 
-            } else if (choice1 == 4) {
+            } else if (choice == 4) {
                 var8 = true;
                 System.out.println("Exiting the system.");
 
