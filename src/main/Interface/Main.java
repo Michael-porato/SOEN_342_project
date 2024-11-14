@@ -41,15 +41,15 @@ public class Main {
                 int login_choice = keyIn.nextInt();
                 keyIn.nextLine(); // Consume newline
 
-                String login_username, var12;
+                String login_username, login_password;
 
                 if (login_choice == 1) {
                     System.out.print("Enter Client username: ");
                     login_username = keyIn.nextLine();
                     System.out.print("Enter Client password: ");
-                    var12 = keyIn.nextLine();
+                    login_password = keyIn.nextLine();
 
-                    if (login_username.equals(var1) && var12.equals(var2)) {
+                    if (login_username.equals(var1) && login_password.equals(var2)) {
                         System.out.println("Client login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Client.");
@@ -59,9 +59,9 @@ public class Main {
                     System.out.print("Enter Administrator username: ");
                     login_username = keyIn.nextLine();
                     System.out.print("Enter Administrator password: ");
-                    var12 = keyIn.nextLine();
+                    login_password = keyIn.nextLine();
 
-                    if (login_username.equals(var3) && var12.equals(var4)) {
+                    if (login_username.equals(var3) && login_password.equals(var4)) {
                         System.out.println("Administrator login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Administrator.");
@@ -71,9 +71,9 @@ public class Main {
                     System.out.print("Enter Instructor username: ");
                     login_username = keyIn.nextLine();
                     System.out.print("Enter Instructor password: ");
-                    var12 = keyIn.nextLine();
+                    login_password = keyIn.nextLine();
 
-                    if (login_username.equals(var5) && var12.equals(var6)) {
+                    if (login_username.equals(var5) && login_password.equals(var6)) {
                         System.out.println("Instructor login successful!");
                     } else {
                         System.out.println("Incorrect username or password for Instructor.");
