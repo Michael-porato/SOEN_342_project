@@ -1,12 +1,13 @@
-package main.domain.BookingLogic;
+package domain.BookingLogic;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Location {
 
-    private String city;
-    private String province;
-    private List<Lesson> lessons;
+    public String city;
+    public String province;
+    public List<Lesson> lessons;
 
 
     public Location(String city, String province, List<Lesson> lessons) {

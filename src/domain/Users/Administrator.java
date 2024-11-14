@@ -1,8 +1,9 @@
-package main.domain.Users;
+package domain.Users;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import main.domain.BookingLogic.Offerings;
+import domain.BookingLogic.Offerings;
 
 public class Administrator extends User {
     public List<Offerings> offerings; 

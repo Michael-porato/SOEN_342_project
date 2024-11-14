@@ -1,28 +1,27 @@
-package main.domain.BookingLogic;
+package domain.BookingLogic;
+
 import java.time.LocalDateTime;
 
+import domain.Users.Instructor;
 
 public class Offerings{
-    private double duration;
-    private boolean availability;
-    private String mode;
-    private LocalDateTime startTime;     
-    private LocalDateTime endTime;
+    
+    public boolean availability;
+    public String mode;
+    public LocalDateTime startTime;     
+    public Instructor instructor;
+
     
     public Offerings(double duration, boolean availability, String mode, LocalDateTime startTime,
             LocalDateTime endTime) {
-        this.duration = duration;
-        this.availability = availability;
+        
+        this.availability = true;
         this.mode = mode;
         this.startTime = startTime;
-        this.endTime = endTime;
+        this.instructor = null;
     }
-    public double getDuration() {
-        return duration;
-    }
-    public void setDuration(double duration) {
-        this.duration = duration;
-    }
+
+    
     public boolean isAvailability() {
         return availability;
     }
@@ -41,12 +40,23 @@ public class Offerings{
     public void setStartTime(LocalDateTime startTime) {
         this.startTime = startTime;
     }
-    public LocalDateTime getEndTime() {
-        return endTime;
+
+
+    public Instructor getInstructor() {
+        return instructor;
     }
-    public void setEndTime(LocalDateTime endTime) {
-        this.endTime = endTime;
-    }     
+
+    public void assignInstructor(Instructor instructor) {
+        this.instructor = instructor;
+        this.availability = true;  // Set availability to true when an instructor is assigned
+    }
+
+    public boolean isAvailableForBooking() {
+        return availability && instructor != null;  // Only available if instructor is assigned and availability is true
+    }
+
+
+    
 
     
 }

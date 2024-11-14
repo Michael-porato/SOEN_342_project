@@ -1,9 +1,11 @@
-package main.domain.Users;
-import java.util.List;
+package domain.Users;
 
-import main.domain.BookingLogic.Availability;
+
 
 import java.util.ArrayList;
+import java.util.List;
+
+import domain.BookingLogic.Availability;
 
 public class Instructor extends User{
     
@@ -15,7 +17,7 @@ public class Instructor extends User{
     
 
 
-    public Instructor(int userID, String name, String phone_number, String email, String username, String password, String phoneNumber, String specialization){
+    public Instructor(int userID, String name, String phone_number, String email, String username, String password, String specialization){
 
         super(userID, name, email, username, password);
         this.phone_number = phone_number; 

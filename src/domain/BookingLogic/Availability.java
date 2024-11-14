@@ -1,4 +1,4 @@
-package main.domain.BookingLogic;
+package domain.BookingLogic;
 import java.time.LocalTime;
 
 public class Availability {

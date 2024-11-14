@@ -1,4 +1,6 @@
-package main.domain.Users;
+package domain.Users;
+
+
 public abstract class User {
     
     private int userID;

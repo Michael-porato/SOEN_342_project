@@ -1,6 +1,7 @@
-package main.domain.BookingLogic;
+package domain.BookingLogic;
 
-import main.domain.Users.Client;
+import domain.Users.Client;
+
 
 public class Booking {
     private String bookingId;       
@@ -34,7 +35,7 @@ public class Booking {
         return status; 
     }
 
-    // Setters
+    
     public void setStatus(String status) {
         this.status = status; 
     }
