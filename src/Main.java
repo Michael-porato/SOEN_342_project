@@ -314,4 +314,3 @@ public static void makeClientBooking(Offerings offering, Client client) {
 
 
 
-
