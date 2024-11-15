@@ -2,6 +2,7 @@ package domain.BookingLogic;
 
 import java.time.LocalDateTime;
 
+
 public class Room {
 
     public Location location;
@@ -19,21 +20,52 @@ public class Room {
 
 
     }
-    
-    
-    
+
+
+    public Location getLocation() {
+        return location;
+    }
+
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+
     public LocalDateTime getStart_time() {
         return start_time;
     }
+
+
     public void setStart_time(LocalDateTime start_time) {
         this.start_time = start_time;
     }
-    public LocalDateTime getEnd_Time() {
+
+
+    public LocalDateTime getEnd_time() {
         return end_time;
     }
-    public void setEnd_Time(LocalDateTime end_Time) {
-        this.end_time = end_Time;
+
+
+    public void setEnd_time(LocalDateTime end_time) {
+        this.end_time = end_time;
     }
+
+
+    public Schedule getSchedule() {
+        return schedule;
+    }
+
+
+    public void setSchedule(Schedule schedule) {
+        this.schedule = schedule;
+    }
+
+
+    
+    
+    
+
 
 
     
