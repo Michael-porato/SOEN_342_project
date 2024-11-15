@@ -12,7 +12,7 @@ public class Instructor extends User{
 
     
     public String phone_number;
-    private String specialization;
+    public String specialization;
     public List<Availability> availability;
     
 

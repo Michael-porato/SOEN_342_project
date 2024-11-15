@@ -7,7 +7,7 @@ import domain.BookingLogic.Booking;
 
 public class Client extends User{
     
-    private List<Booking> bookings;
+public  List<Booking> bookings;
 
 
 

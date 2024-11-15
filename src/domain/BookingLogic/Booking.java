@@ -4,10 +4,10 @@ import domain.Users.Client;
 
 
 public class Booking {
-    private String bookingId;       
-    private Client client;            
-    private Offerings offerings;        
-    private String status;            
+    public String bookingId;       
+    public Client client;            
+    public Offerings offerings;        
+    public String status;            
 
    
     public Booking(String bookingId, Client client, Offerings offerings, String status) {

@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import domain.Users.Instructor;
 
 public class Lesson {
-    private String lessonId;             
-    private String type;               
-    private LocalDateTime startTime;     
-    private LocalDateTime endTime;     
-    private Location location;           
-    private Instructor instructor;       
+    public String lessonId;             
+    public String type;               
+    public LocalDateTime startTime;     
+    public LocalDateTime endTime;     
+    public Location location;           
+    public Instructor instructor;       
 
     // Constructor
     public Lesson(String lessonId, String type, LocalDateTime startTime, LocalDateTime endTime, Location location, Instructor instructor) {
@@ -20,6 +20,11 @@ public class Lesson {
         this.endTime = endTime;               
         this.location = location;               
         this.instructor = instructor;         
+    }
+
+    public Lesson(String type, Instructor instructor) {
+        this.type = type;
+        this.instructor = instructor;
     }
 
     

@@ -1,12 +1,16 @@
 package domain.Users;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import domain.BookingLogic.Lesson;
 import domain.BookingLogic.Offerings;
+import domain.BookingLogic.Room;
 
 public class Administrator extends User {
-    public List<Offerings> offerings; 
+    public ArrayList<Offerings> offerings; 
+    
 
    
     public Administrator(int userId, String name, String email, String username, String password) {
@@ -43,5 +47,14 @@ public class Administrator extends User {
         System.out.println("User " + user.getName() + " has been deleted."); 
     }
 
-    
+    public static Offerings createOffering(String mode, LocalDateTime startTime, LocalDateTime endTime, Room room, ArrayList<Offerings> offeringsList, Lesson lesson) {
+        Offerings offering = new Offerings(mode, startTime, endTime, room, lesson);
+        offeringsList.add(offering); // Add to a list available to all instructors
+        return offering;
+    }
+
+    public void deleteAccount (User user, List <User> usersList){
+
+        usersList.remove(user);
+    }
 }

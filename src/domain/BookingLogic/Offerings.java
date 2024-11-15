@@ -10,15 +10,19 @@ public class Offerings{
     public String mode;
     public LocalDateTime startTime;     
     public Instructor instructor;
+    public Room room;
+    public Lesson lesson;
 
     
-    public Offerings(double duration, boolean availability, String mode, LocalDateTime startTime,
-            LocalDateTime endTime) {
+    public Offerings(String mode, LocalDateTime startTime,
+            LocalDateTime endTime, Room room, Lesson lesson) {
         
-        this.availability = true;
+        this.availability = false;
         this.mode = mode;
         this.startTime = startTime;
         this.instructor = null;
+        this.room = room;
+        this.lesson = lesson;
     }
 
     
@@ -55,6 +59,12 @@ public class Offerings{
         return availability && instructor != null;  // Only available if instructor is assigned and availability is true
     }
 
+
+    public String toString() {
+        return "Offering: " + this.lesson.getType() + " (" + this.mode + "), " + 
+               "Start Time: " + this.startTime + ", End Time: " + this.room.getEnd_time() + 
+               ", Room: " + this.room.getLocation().getCity(); // Customize to your needs
+    }
 
     
 
