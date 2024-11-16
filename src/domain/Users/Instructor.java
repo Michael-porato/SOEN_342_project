@@ -1,11 +1,9 @@
 package domain.Users;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
-
 import domain.BookingLogic.Availability;
+import domain.BookingLogic.Offerings;
 
 public class Instructor extends User{
     
@@ -14,6 +12,7 @@ public class Instructor extends User{
     public String phone_number;
     public String specialization;
     public List<Availability> availability;
+    private List<Offerings> claimedOfferings; 
     
 
 
@@ -22,10 +21,10 @@ public class Instructor extends User{
         super(userID, name, email, username, password);
         this.phone_number = phone_number; 
         this.specialization = specialization;
-        this.availability = new ArrayList<>(); 
+        this.availability = new ArrayList<>();
+        this.claimedOfferings = new ArrayList<>(); 
 
     }
-
 
 
     public String getPhone_number(){
@@ -39,7 +38,6 @@ public class Instructor extends User{
     public List<Availability> getAvailability(){
         return availability;
     }
-
 
 
     public void setPhone_number(String phone_number){
@@ -63,6 +61,35 @@ public class Instructor extends User{
     
     public void removeAvailability(Availability avail) {
         availability.remove(avail);             
+    }
+
+    public void addOffering(Offerings offering) {
+        claimedOfferings.add(offering);
+    }
+
+    public List<Offerings> getClaimedOfferings() {
+        return claimedOfferings;
+    }
+
+    public void showInstructorOfferings() {
+        if (claimedOfferings.isEmpty()) {
+            System.out.println("This instructor has not claimed any offerings.");
+        } else {
+            for (Offerings offering : claimedOfferings) {
+                System.out.println("Claimed Offering: " + offering.getLesson().getType());
+            }
+        }
+    }
+
+
+    public void claimOffering(Offerings offering) {
+        if (offering.isAvailability()) {
+            offering.setAvailability(false); // Mark as unavailable
+            claimedOfferings.add(offering);
+            System.out.println("Offering claimed: " + offering.getLesson().getType());
+        } else {
+            System.out.println("Offering is already claimed by another instructor.");
+        }
     }
 
     

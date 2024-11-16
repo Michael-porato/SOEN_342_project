@@ -28,5 +28,9 @@ public class Time_slot {
         this.end_time = end_time;
     }
 
+
+    public boolean overlaps(LocalDateTime otherStart, LocalDateTime otherEnd) {
+        return !(otherEnd.isBefore(start_time) || otherStart.isAfter(end_time));
+    }
     
 }

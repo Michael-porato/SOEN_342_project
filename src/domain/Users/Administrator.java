@@ -23,10 +23,6 @@ public class Administrator extends User {
         return offerings;
     }
 
-    
-    public void addOffering(Offerings offering) {
-        offerings.add(offering);
-    }
 
     
     public void removeOffering(Offerings offering) {
@@ -41,20 +37,15 @@ public class Administrator extends User {
         }
     }
 
-    
-    public void deleteUser(User user) {
-        
-        System.out.println("User " + user.getName() + " has been deleted."); 
-    }
 
-    public static Offerings createOffering(String mode, LocalDateTime startTime, LocalDateTime endTime, Room room, ArrayList<Offerings> offeringsList, Lesson lesson) {
-        Offerings offering = new Offerings(mode, startTime, endTime, room, lesson);
+    public static Offerings createOffering(String mode, LocalDateTime startTime, LocalDateTime endTime, Room room, ArrayList<Offerings> offeringsList, Lesson lesson, boolean published) {
+       
+        Offerings offering = new Offerings(mode, startTime, endTime, room, lesson, published, 1);
         offeringsList.add(offering); // Add to a list available to all instructors
         return offering;
     }
 
-    public void deleteAccount (User user, List <User> usersList){
-
+    public void deleteUser (User user, List <User> usersList){
         usersList.remove(user);
     }
 }

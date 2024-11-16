@@ -8,15 +8,17 @@ public class Room {
     public Location location;
     public LocalDateTime start_time;
     public LocalDateTime end_time;
-    public Schedule schedule; 
+    public Schedule schedule;
+    public String type;
     
     
-    public Room (Location location, LocalDateTime start_time, LocalDateTime end_time, Schedule schedule ){
+    public Room (Location location, LocalDateTime start_time, LocalDateTime end_time, Schedule schedule, String type){
 
         this.location = location;
         this.start_time = start_time;
         this.end_time = end_time;
         this.schedule = schedule;
+        this.type = type;
 
 
     }
@@ -61,6 +63,14 @@ public class Room {
         this.schedule = schedule;
     }
 
+    public void setType(String type){
+        this.type = type;
+
+    }
+
+    public String getType(){
+        return type;
+    }
 
     
     

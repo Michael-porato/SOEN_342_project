@@ -68,6 +68,10 @@ public class Booking {
         return bookingTime;
     }
 
+    public String toString(){
+        return "This booking is for offering: "+ this.offerings.toString()+ " and for client: "+ this.client.toString();
+    }
+
 
 
 

@@ -2,7 +2,6 @@ package domain.Users;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import domain.BookingLogic.Booking;
 import domain.BookingLogic.Offerings;
 
@@ -47,6 +46,10 @@ public Client(int userId, String name, String email, String username, String pas
         } else {
             System.out.println("Sorry, this offering is already booked.");
         }
+    }
+
+    public String toString(){
+        return this.name;
     }
 
 }

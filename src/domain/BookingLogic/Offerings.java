@@ -13,10 +13,11 @@ public class Offerings{
     public Instructor instructor;
     public Room room;
     public Lesson lesson;
+    public boolean published;
+    public int capacity;
 
     
-    public Offerings(String mode, LocalDateTime startTime,
-            LocalDateTime endTime, Room room, Lesson lesson) {
+    public Offerings(String mode, LocalDateTime startTime, LocalDateTime endTime, Room room, Lesson lesson, boolean published, int capacity) {
         
         this.availability = false;
         this.mode = mode;
@@ -25,6 +26,8 @@ public class Offerings{
         this.instructor = null;
         this.room = room;
         this.lesson = lesson;
+        this.published = false;
+        this.capacity =capacity;
     }
 
     
@@ -61,18 +64,54 @@ public class Offerings{
         return instructor;
     }
 
+    public void setInstructor(Instructor i){
+        this.instructor = i;
+    }
+
+    public boolean isPublished() {
+        return published;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+
+
+
     public void assignInstructor(Instructor instructor) {
         this.instructor = instructor;
         this.availability = true;  // Set availability to true when an instructor is assigned
+        this.published = true;
     }
 
     public String toString() {
+
+        var iName ="";
+        if(this.instructor == null){
+            iName = "Not Set";
+        }
+        else{
+            iName = this.instructor.getName();
+        }
+
+        
+
         return "Offering{" +
                 "lessonType='" + lesson.type + '\'' +
                 ", mode='" + mode + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + room.end_time +
                 ", isAvailable=" + availability +
+                ", Instructor = "+iName+
                 '}';
     }
 

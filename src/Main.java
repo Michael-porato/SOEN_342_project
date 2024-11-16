@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,9 +21,12 @@ static HashMap<String, String> users = new HashMap<>();
 static ArrayList<Offerings> offerings = new ArrayList<>();
 static ArrayList<User> usersList = new ArrayList<>();
 
+
+
 public static void main(String[] args) {
     Scanner keyIn = new Scanner(System.in);
     boolean var8 = false;
+    Booking booking = null;
 
     User user = null;
 
@@ -35,6 +39,7 @@ public static void main(String[] args) {
 
     while (!var8) {
 
+
         if (user instanceof Administrator) {
 
             System.out.println("--Admin Menu--");
@@ -43,6 +48,7 @@ public static void main(String[] args) {
             System.out.println("10. Cancel Booking");
             System.out.println("11. Delete account of instuctor");
             System.out.println("12. Delete account of client");
+            System.out.println("13. Logout");
             System.out.println("Choose an option: ");
             
 
@@ -50,11 +56,18 @@ public static void main(String[] args) {
         } else if (user instanceof Client) {
 
             System.out.println("--Client Menu--");
-            System.out.println("13. View offerings and make a booking");
+            System.out.println("14. Make a booking");
+            System.out.println("15. View bookings");
+            System.out.println("16. Logout");
+
 
 
         } else if (user instanceof Instructor) {
-            System.out.print("I AM AN INSTRUCTOR");
+            System.out.println("20. View available offerings");
+            System.out.println("21. Claim on offering");
+            System.out.println("22. Instructor offerings");
+            System.out.println("23. Logout");
+            System.out.println("Choose an option:");
 
         } else {
             guestMenu();
@@ -132,76 +145,100 @@ public static void main(String[] args) {
             System.out.println("Account created successfully as Client!");
 
         } else if (choice == 3) {
-            viewOfferings(); // Call the method to view offerings
-            continue;
+            for(int i =0;i<offerings.size();i++){
+                System.out.print("Offering "+(i)+ " "+ offerings.get(i));
+            }
         
         } else if (choice == 4) {
             var8 = true;
             System.out.println("Exiting the system.");
 
-        } else {
-            System.out.println("Invalid option. Please try again.");
+        
         }
 
         if(choice == 8){
 
     
             String mode = "Private";
-            LocalDateTime startTime = LocalDateTime.of(2024, 11, 14, 11, 0); // Adjust date and time as needed
-            LocalDateTime endTime = LocalDateTime.of(2024, 11, 14, 12, 0);
-        
-            // Create a list of lessons to initialize Location
-            ArrayList<Lesson> lessonsList = new ArrayList<>();
+
+            List<Lesson> lessonsList = new ArrayList<>();
+            lessonsList.add(new Lesson("Tennis", null));  
+            lessonsList.add(new Lesson("Boxing", null));
+            lessonsList.add(new Lesson("Yoga", null));
+
             
-            // Initialize Location with city, province, and an empty list of lessons
-            Location location = new Location("New York", "NY", lessonsList);
+
+            System.out.println("Please enter the start time of the offering in the format yyyy-dd-MM:HH:");
+            String startTimeInput = keyIn.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-dd-MM:HH");
+            LocalDateTime startTime = LocalDateTime.parse(startTimeInput, formatter);
+
+
+            System.out.println("Please enter the end time of the offering in the format yyyy-dd-MM:HH:");
+            String endTimeInput = keyIn.nextLine();
+            LocalDateTime endTime = LocalDateTime.parse(endTimeInput, formatter);
+
+
         
-            // Create Schedule and add Time_slots if necessary
-            Schedule schedule = new Schedule();
-            schedule.time_slots.add(new Time_slot(
-                LocalDateTime.of(2024, 11, 14, 9, 0), // Example existing time slot start
-                LocalDateTime.of(2024, 11, 14, 10, 0) // Example existing time slot end
-            ));
-            schedule.time_slots.add(new Time_slot(
-                LocalDateTime.of(2024, 11, 14, 13, 0),
-                LocalDateTime.of(2024, 11, 14, 14, 0)
-            ));
-        
-            // Create Room with location, start_time, end_time, and schedule
-            Room room = new Room(location, startTime, endTime, schedule);
-        
-            // Check room availability before proceeding (optional)
-            if (!schedule.isRoomAvailable(new Offerings(mode, startTime, endTime, room, new Lesson("Yoga", new Instructor(1, "John Doe", "1234567890", "john.doe@example.com", "johndoe", "password123", "Yoga"))).getStartTime(), new Offerings(mode, startTime, endTime, room, new Lesson("Yoga", new Instructor(1, "John Doe", "1234567890", "john.doe@example.com", "johndoe", "password123", "Yoga"))).getEndTime())) {
-                System.out.println("Room is not available for the selected time slot.");
+            System.out.println("Select a lesson from the available list:");
+            for (int i = 0; i < lessonsList.size(); i++) {
+                System.out.println((i + 1) + ": " + lessonsList.get(i).getType());
             }
-             else {
-                // Create the Instructor and Lesson objects
-                Instructor instructor = new Instructor(
-                    /*userID=*/1, 
-                    /*name=*/"John Doe", 
-                    /*phone_number=*/"1234567890", 
-                    /*email=*/"john.doe@example.com", 
-                    /*username=*/"johndoe", 
-                    /*password=*/"password123", 
-                    /*specialization=*/"Yoga"
-                );
-                Lesson lesson = new Lesson("Yoga", instructor);
-        
-                // Initialize the offerings list
-                ArrayList<Offerings> offeringsList = new ArrayList<>();
-        
-                // Call the createOffering method
-                Offerings offering = Administrator.createOffering(mode, startTime, endTime, room, offeringsList, lesson);
+            int lessonChoice = keyIn.nextInt();
+            Lesson selectedLesson = lessonsList.get(lessonChoice - 1);
+            keyIn.nextLine();
+            
+            // Select room
+            System.out.println("Enter the room (Swimming pool, Yoga studio):");
+            String type = keyIn.nextLine();    
+            System.out.println("Enter the location city:");
+            String city = keyIn.nextLine();
+            System.out.println("Enter the location province/state:");
+            String province = keyIn.next();
+            
+            // Initialize Location
+            Location location = new Location(city, province, lessonsList);
+            
+            // Initialize Schedule
+            Schedule schedule = new Schedule();
+            System.out.println("Enter the number of time slots for this schedule:");
+            int timeSlotCount = keyIn.nextInt();
+            keyIn.nextLine(); // Consume leftover newline
+            
+            for (int i = 0; i < timeSlotCount; i++) {
+                System.out.println("Enter start time for time slot " + (i + 1) + " (yyyy-dd-MM:HH):");
+                String slotStartInput = keyIn.nextLine();
+                LocalDateTime slotStart = LocalDateTime.parse(slotStartInput, formatter);
+            
+                System.out.println("Enter end time for time slot " + (i + 1) + " (yyyy-dd-MM:HH):");
+                String slotEndInput = keyIn.nextLine();
+                LocalDateTime slotEnd = LocalDateTime.parse(slotEndInput, formatter);
+            
+                schedule.addTimeSlot(new Time_slot(slotStart, slotEnd));
+            }
+            
+            // Create Room
+            Room room = new Room(location, startTime, endTime, schedule, type);
+            
+            // Check room availability
+            if (!schedule.isRoomAvailable(startTime, endTime)) {
+                System.out.println("Room is not available for the selected time slot.");
+            } else {
+                System.out.println("Room is available. Proceeding to create offering.");
+            
 
-                offeringsList.add(offering);  // Automatically adds to the global list
-
-                // Return the created offering
-                System.out.println("Offering created: " + offering);
-        
+            
+                Offerings offering = new Offerings(mode, startTime, endTime, room, selectedLesson, false, 1);
+                offerings.add(offering);
+            
+                System.out.println("Offering created successfully: " + offering);
+                continue;
             }
             continue;
 
             }
+            
+            
 
             if (choice == 9){
 
@@ -223,29 +260,99 @@ public static void main(String[] args) {
                 
             }
 
-            if (choice == 13) {
-                viewClientOfferings(offerings);  // Assuming offerings is a list of available offerings
-    
-                // Prompt client to choose an offering to book
-                System.out.print("Enter the number of the offering you want to book: ");
-                int offeringChoice = keyIn.nextInt();
-                keyIn.nextLine();  // Consume newline
+
+            if(choice == 13){
+
+                System.out.println("Logging out...");
+                user = null; 
+                continue;
+            }
+
+
+
+            if (choice == 14) {
                 
-                if (offeringChoice >= 0 && offeringChoice < offerings.size()) {
-                    // Select the chosen offering
-                    Offerings selectedOffering = offerings.get(offeringChoice);
-                    
-                    // Call the method to make the booking
-                    makeClientBooking(selectedOffering, (Client) user);  // This is where you make the booking
-                    
-                } else {
-                    System.out.println("Invalid offering number.");
+
+                
+                for(int i =0;i<offerings.size();i++){
+                    System.out.print("Offering "+(i)+ " "+ offerings.get(i));
                 }
-        }
+
+                System.out.println("\n ");
+                System.out.println("Select the offering you want: ");
+                int offeringInput = keyIn.nextInt();
+
+                Client client = new Client(1,"Adam","adam@gmail.com"," "," ");
+
+                booking = new Booking("1",client,offerings.get(offeringInput),"Available");
+            
+                } 
+            if(choice == 15){
+                System.out.println("Your offerings:");
+                System.out.println(booking);
+            }
+
+            if(choice ==16){
+                System.out.println("Logging out...");
+                user = null; 
+                continue;
+
+            }
+            
+
+
+
+            if (choice == 20){
+
+                for(int i =0;i<offerings.size();i++){
+                    System.out.print("Offering "+(i)+ " "+ offerings.get(i));
+                }
+            }
+
+
+            if(choice == 21){
+
+                for(int i =0;i<offerings.size();i++){
+                    System.out.print("Offering "+(i)+ " "+ offerings.get(i));
+                }
+                System.out.println("\n");
+                System.out.println("Select the offering you want: ");
+                int offeringInput = keyIn.nextInt();
+                
+                Offerings o = offerings.get(offeringInput);
+
+                Instructor i = new Instructor(1,"Michael","51436452643","m@gmail.com"," "," ","swim");
+
+                o.setInstructor(i);
+
+                offerings.remove(offeringInput);
+
+                offerings.add(o);
+
+                System.out.println("\n+"+o);
+                
+
+            }
+
+            if(choice == 22){
+               
+            }
+
+            if(choice == 23){
+                System.out.println("Logging out...");
+                user = null; 
+                continue;
+            }
+        
+        
+        
+        
+        
+  
+        
+    
+
     }
-
-
-    keyIn.close();
 }
 
 public static void guestMenu() {
@@ -310,7 +417,9 @@ public static void makeClientBooking(Offerings offering, Client client) {
         System.out.println("Sorry, this offering is already booked.");
     }
 }
-    
+
+
+
 
 
 
